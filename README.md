@@ -166,6 +166,41 @@ The CSAO Rail is not just a recommendation model; it is a **revenue optimization
 
 ---
 
+## 9. Appendix & Resources
+
+### 9.1 Relevant Links & References
+* **Repository:** [CSAO-Recommendation-System](https://github.com/jaineshchaurasiya20/CSAO-Recommendation-System)
+* **Semantic Embeddings Model:** [HuggingFace - all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+* **Vector Search Engine:** [pgvector Documentation](https://github.com/pgvector/pgvector)
+* **Inference Engine:** [ONNX Runtime Python API](https://onnxruntime.ai/docs/get-started/with-python.html)
+* **Sentence Transformers Library:** [HuggingFace Sentence Transformers](https://huggingface.co/sentence-transformers)
+* **Ranking Model:** [LightGBM Documentation](https://lightgbm.readthedocs.io/en/stable/)
+* **Graph Database:** [Neo4j](https://neo4j.com/)
+
+### 9.2 Supporting Material
+
+#### A. Latency Budget Analysis (Proof of Feasibility)
+*Estimated breakdown of the <300ms latency budget.*
+
+| Component | Technology | Budgeted Time | Status |
+| :--- | :--- | :--- | :--- |
+| **Network Overhead** | AWS/Cloud | 40 ms | Est. |
+| **Retrieval (ANN)** | pgvector (HNSW Index) | 50 ms | Est. |
+| **Featurization** | Redis (Hash Get) | 20 ms | Est. |
+| **Scoring Model** | ONNX Runtime (CPU) | 80 ms | Est. |
+| **Business Logic** | Python (Pricing Engine) | 20 ms | Est. |
+| **Total Latency** | **End-to-End** | **~210 ms** | **Safe (<300ms)** |
+
+#### B. Synthetic Data Schema (Proof of Data Readiness)
+*Key features engineered for the model.*
+
+| Entity | Feature Name | Data Type | Description |
+| :--- | :--- | :--- | :--- |
+| **User** | `affinity_vector` | Float32[] | 384-dim semantic embedding of taste profile. |
+| **Context** | `is_dinner_peak` | Boolean | True if time is 19:00 - 22:00. |
+| **Item** | `margin_tier` | Categorical | High/Med/Low (Used for Cashback Logic). |
+| **Graph** | `co_occurrence_score` | Float | Probability of buying Item B given Item A. |
+
 ### How to Run This Project
 
 1. **Clone the repository:**
