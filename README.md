@@ -41,8 +41,6 @@ The CSAO Rail system is designed on a **Hybrid Two-Tower Architecture**, splitti
 * **Ranking Layer (<150ms):** A LightGBM model (deployed via ONNX Runtime) scores items based on probability of purchase, factoring in User History, Time of Day, and Profit Margin.
 * **Business Layer:** A Dynamic Pricing Engine applies "Cashback Lock-ins" to high-margin pairs.
 
-![CSAO Rail System Architecture Diagram](https://github.com/jaineshchaurasiya20/CSAO-Recommendation-System/blob/main/Gemini_Generated_Image_3606v83606v83606%20(1).png)
-*(Note: Please ensure the architecture diagram image is uploaded to your repository)*
 
 ### 3.2 Component Breakdown
 
